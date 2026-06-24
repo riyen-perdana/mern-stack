@@ -1,18 +1,15 @@
 import express from "express";
 import router from "./routes/route.js";
+import { connectDb } from "./config/db.js";
+import dotenv from "dotenv";
 
+dotenv.config();
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 5001;
+connectDb();
 
-
-/**
- * URL API
- */
 app.use("/api/v1", router);
 
-/**
- * Server
- */
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
